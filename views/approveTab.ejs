@@ -1,0 +1,83 @@
+ <!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>BanjoTab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="./banjo.css">
+<style>
+</style>
+<script src=""></script>
+<body>
+<div class="header">
+ <h1>Banjo Tabs</h1>
+</div>
+<!-- use a checkmark and a link to give the user a way to select certain tabs or audio to remove or keep -->
+<!-- this system won't initially have the ability to add a new tab from this page -->
+<form action=http://localhost:3000/songe method="POST">
+    <h4> Tabs selected </h4>
+    <input type="hidden" id="num_tab" name="num_tab" value="<%=data.tabs.length%>"></input>
+    <% for(let i=0; i < data.tabs.length; i++) { %>
+    <input type="radio" id="tabkeep<%=i%>true" name="tabkeep<%=i%>" value="true" checked></input>
+    <label for="tabkeep<%=i%>true">selected</label>
+    <input type="radio" id="tabkeep<%=i%>false" name="tabkeep<%=i%>" value="false"></input>
+    <label for="tabkeep<%=i%>false">not selected</label>
+    <input type="hidden" id="tab<%=i%>" name="tab<%=i%>" value="<%=data.tabs[i]%>"></input>
+    <!--download to the file type-->
+        <% const filename = data.tabs[i].split('.') %>
+        <a download="true" href="http://localhost:3000/tab/<%=filename[0]%>/<%filename[1]%>"><%=filename[0]%></a>
+        <br>
+    <% } %>
+    <input type="hidden" id="num_audio" name="num_audio" value="<%=data.audio.length%>"></input>
+    <h4> Audio selected </h4>
+    <% for(let i=0; i < data.audio.length; i++) { %>
+    <input type="radio" id="audiokeep<%=i%>true" name="audiokeep<%=i%>" value="true" checked></input>
+    <label for="audiokeep<%=i%>true">selected</label>
+    <input type="radio" id="audiokeep<%=i%>false" name="audiokeep<%=i%>" value="false"></input>     
+    <label for="audiokeep<%=i%>false">not selected</label>
+    <input type="hidden" id="audio<%=i%>" name="audio<%=i%>" value="<%=data.audio[i]%>"></input>
+    <!--download to the file type-->
+        <% const filename = data.audio[i].split('.')%>
+        <a download="true" href="http://localhost:3000/tab/<%=filename[0]%>/<%filename[1]%>"><%=filename[0]%></a>
+        <br>
+    <% } %>
+    <br>
+ <label for="name">Name of Tab</label>
+ <br>
+ <input type="text" id="name" name="name" value='<%=data.name%>'></input>
+ <br>
+ <!-- how do I make a list for the altnames? -->
+ <h4> Altnames </h4>
+ <input type="hidden" id="num_altname" name="num_altname" value="<%=data.altnames.length%>"></input>
+ <% for(let i=0; i < data.altnames.length; i++) { %>
+    <input type="radio" id="altnamekeep<%=i%>true" name="altnamekeep<%=i%>" value="true" checked></input>
+    <label for="altnamekeep<%=i%>true">selected</label>
+    <input type="radio" id="altnamekeep<%=i%>false" name="altnamekeep<%=i%>" value="false"></input>     
+    <label for="altnamekeep<%=i%>false">not selected</label>
+    <!--download to the file type-->
+        <% const filename = data.altnames[i].split('.')%>
+        <input type="text" id="altname<%=i%>" name="altname<%=i%>" value="<%=data.altnames[i]%>"></input>
+        <br>
+ <% } %>
+ <br>
+
+ <label for="artist">Artist or Composer</label>
+ <br>
+ <input type="text" id="artist" name="artist" value='<%=data.artist%>'></input>
+ <br>
+ <h4>Was the tab found?</h4>
+ <br>
+ <input type="radio" id="foundtrue" name="found" value="true" checked></input>
+ <label for="foundtrue">found</label>
+ <input type="radio" id="foundfalse" name="found" value="false"></input>     
+ <label for="foundfalse">not found</label>   
+ <br>
+ <!-- decide if a hidden input makes sense right here or not -->
+ <br>
+ <label for="description">Write a few comments or description of the song/tab</label>
+ <br>
+ <textarea id=description" rows="4" cols="50" name="description"><%=data.description%></textarea>
+ <br>
+ <button type="submit" id="addtab">approve tab</button>
+ </form>
+</body>
+</html>

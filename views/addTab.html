@@ -1,0 +1,47 @@
+ <!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>BanjoTab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="./banjo.css">
+<style>
+</style>
+<script src=""></script>
+<body>
+<div class="header">
+ <h1>Banjo Tabs</h1>
+</div>
+ <form action="http://localhost:3000/song" method="POST">
+ <label for="name">Name of Tab</label>
+ <br>
+ <input type="text" id="name" name="name"></input>
+ <br>
+ <!-- how do I make a list for the altnames? -->
+ <label for="artist">Artist or Composer</label>
+ <br>
+ <input type="text" id="artist" name="artist"></input>
+ <br>
+ <label for="tabfound">Was the tab found?</label>
+ <br>
+ <input type="checkbox" id="tabfound" name="tabfound">yes</input>
+ <br>
+ <!-- add a link here to requirements for tabs for optimal internet user viewing exp -->
+ <p>Please upload a pdf tab file along with anyother format in this list</p>
+ <label for="tabs-files">upload tabs</label>
+ <br>
+ <!-- handle the mime type with the backend node server to make sure it is actually a normal file -->
+ <input type="file" id="tabsfiles" name="tabfiles" multiple=true></input>
+ <br>
+ <label for="tabs-audio">upload a recording of the tab</label>
+ <br>
+ <input type="file" id="tabsaudio" accept="audio/*" name="tabsaudio" multiple=true></input>
+ <!-- decide if a hidden input makes sense right here or not -->
+ <br>
+ <label for="description">Write a few comments or description of the song/tab</label>
+ <br>
+ <textarea id=description" rows="4" cols="50" name="description"></textarea>
+ <br>
+ <button type="submit" id="addtab">Add Tab</button>
+ </form>
+</body>
+</html>

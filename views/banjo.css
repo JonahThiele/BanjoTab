@@ -1,0 +1,43 @@
+body {
+     background-color: #f1ddbf;
+     text-align: center
+ }
+
+.songs-table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;    
+}
+
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+tr:nth-child(odd) {
+    background-color: #968972;
+}
+
+tr:nth-child(even) {
+    background-color: #c9b898;
+}
+
+
+#outer-list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    text-align: center;
+}
+
+.login {
+    text-align: right;
+}
+
+.header {
+    padding: 20px;
+    background-color: #879e82;
+    font-size: 25px;
+}

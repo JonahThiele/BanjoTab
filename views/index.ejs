@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./banjo.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./clusterize.css" rel="stylesheet">
+    <script src="./clusterize.min.js"></script>
+    <title>BanjoTab</title>
+  </head>
+  <body>
+      <div class="header">
+        <h1 class="title">Banjo Tabs</h1>
+        <a href="./login.html"><h5 class="login">login</h5></a>
+      </div>
+      <% if(data.logged_in) { %>
+        <button id="add-tab" onclick="window.location.href ='./addTab.html';">Add Tab</button>
+        <% if(data.admin) { %>
+            <button id="approval-brd" onclick="window.location.href ='./approval.html';">Approve</button>
+      <% }} %>
+      <label for="tab-search">Search Banjo Tabs</label>
+      <br>
+      <input type="search" id="tab-search" name="q"/>
+      <br>
+      <button id="form">Search</button>
+      <div id="outer-list">
+      <div id="scrollArea" class="clusterize-scroll">
+        <table class="songs-table">
+            <tbody id="contentArea" class="clusterize-content">
+            </tbody>
+        </table>
+      </div>
+      </div>
+      <script type="text/javascript" src="./ultilies.js"></script>
+  </body>
+</html>
