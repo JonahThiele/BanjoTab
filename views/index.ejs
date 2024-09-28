@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./banjo.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link href="./clusterize.css" rel="stylesheet">
     <script src="./clusterize.min.js"></script>
     <title>BanjoTab</title>
@@ -11,18 +14,24 @@
   <body>
       <div class="header">
         <h1 class="title">Banjo Tabs</h1>
-        <a href="./login.html"><h5 class="login">login</h5></a>
+        <div class="navbar">
+            <div class="nav-el">
+                <a class="login" href="./login.html">Login</a>
+            </div>
+        </div>
       </div>
       <% if(data.logged_in) { %>
-        <button id="add-tab" onclick="window.location.href ='./addTab.html';">Add Tab</button>
+        <br>
+        <button  class="generic-btn" id="add-tab" onclick="window.location.href ='./addTab.html';">Add Tab</button>
         <% if(data.admin) { %>
-            <button id="approval-brd" onclick="window.location.href ='./approval.html';">Approve</button>
+            <button class="generic-btn" id="approval-brd" onclick="window.location.href ='./approval.html';">Approve</button>
       <% }} %>
+      <div class="search-box">
       <label for="tab-search">Search Banjo Tabs</label>
       <br>
-      <input type="search" id="tab-search" name="q"/>
-      <br>
-      <button id="form">Search</button>
+      <input type="search" id="tab-search" class="search" placeholder="Angeline the Baker" name="q"/>
+      <button id="form" class="search-btn"></button>
+      </div>
       <div id="outer-list">
       <div id="scrollArea" class="clusterize-scroll">
         <table class="songs-table">

@@ -3,6 +3,9 @@
 <meta charset="UTF-8">
 <title>BanjoTab</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./banjo.css">
 <style>
 </style>
@@ -43,7 +46,7 @@
     <br>
  <label for="name">Name of Tab</label>
  <br>
- <input type="text" id="name" name="name" value='<%=data.name%>'></input>
+ <input class="login-input" type="text" id="name" name="name" value='<%=data.name%>'></input>
  <br>
  <!-- how do I make a list for the altnames? -->
  <h4> Altnames </h4>
@@ -62,7 +65,7 @@
 
  <label for="artist">Artist or Composer</label>
  <br>
- <input type="text" id="artist" name="artist" value='<%=data.artist%>'></input>
+ <input class="login-input" type="text" id="artist" name="artist" value='<%=data.artist%>'></input>
  <br>
  <h4>Was the tab found?</h4>
  <br>
@@ -74,10 +77,10 @@
  <!-- decide if a hidden input makes sense right here or not -->
  <br>
  <label for="description">Write a few comments or description of the song/tab</label>
- <br>
- <textarea id=description" rows="4" cols="50" name="description"><%=data.description%></textarea>
- <br>
- <button type="submit" id="addtab">approve tab</button>
+ <br><br>
+ <textarea class="text-ar" id=description" rows="4" cols="50" name="description"><%=data.description%></textarea>
+ <br><br>
+ <button  class="generic-btn" type="submit" id="addtab">approve tab</button>
  </form>
 </body>
 </html>

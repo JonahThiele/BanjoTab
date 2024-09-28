@@ -67,11 +67,11 @@ for(const row in songs){
     const str = '<tr><td><form action="http://localhost:3000/approve" method="GET">'
         + '<input type="hidden" id="name" name="name" value="' + songs[row]['name'] + '"></input>'
         + '<input type="hidden" id="quickApprove" name="quickApprove" value="no"></input>' 
-        + '<input type="submit" value="' + songs[row]['name'] + '"></input></form></td>'
+        + '<input class="song-btns" type="submit" value="' + songs[row]['name'] + '"></input></form></td>'
         + '<td><form action="http://localhost:3000/approve" method="GET">'
         + '<input type="hidden" id="name" name="name" value="' + songs[row]['name'] + '">'
         + '<input type="hidden" id="quickApprove" name="quickApprove" value="yes"></input>'
-        + '</input><input type="submit" value="approve"></input></form></td></tr>'
+        + '</input><input class="song-btns" type="submit" value="approve"></input></form></td></tr>'
     r_data.push({
         values: [songs[row]['name']],
         markup: str,

@@ -2,14 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../banjo.css">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BanjoTab</title>
   </head>
-  <body>
+  <body class="song-info">
       <div class="header">
         <h1 class="title">Banjo Tabs</h1>
-        <a href="./login.html"><h5 class="login">login</h5></a>
+        <div class="navbar">
+              <div class="nav-el">
+                  <a class="login" href="../login.html">Login</a>
+              </div>
+          </div>
       </div>
       <h1><%= data.name %></h1>
       <h5>Alternate Names:</h5>
@@ -18,25 +26,21 @@
           <li><%= data.altnames[i] %></li>
           <% } %>
       </ul>
-      <h5>Artist:</h5>
-      <p><%= data.artist %>
-      <h5>Tab Found?:</h5>
-      <p><%= data.tabfound %>
-      <h5>Tabs:</h5>
+      <b><p>Artist:</b> <%= data.artist %></p>
+          <b><p>Tab Found?:</b></div> <%= data.tabfound %></p>
+      <b><p>Tabs:</p></b>
       <ul>
           <% for(let i=0; i < data.tabs.length; i++) { %>
           <li><a href="http://localhost:3000/tab/<%=data.tabs[i]%>/pdf" ><%= data.tabs[i] %></a></li>
           <% } %>
       </ul>
-      <h5>Audio:</h5>
+      <b><p>Audio:</p></b>
       <ul>
           <% for(let i=0; i < data.audio.length; i++) { %>
           <li><a href="http://localhost:3000/audio/<%=data.audio[i]%>/pdf"><%= data.audio[i] %></a></li>
           <% } %>
       </ul>
-      <h5>Posted By:</h5>
-      <p><%= data.username %>
-      <h5>Comments/Description</h5>
-      <p><%= data.description %>
+      <b><p>Posted by User:</b> <%= data.username %> </p>
+      <b><p>Comments/Description:</b> <%= data.description %></p>
   </body>
 </html>

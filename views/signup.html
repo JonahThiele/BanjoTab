@@ -3,6 +3,9 @@
 <meta charset="UTF-8">
 <title>BanjoTab</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./banjo.css">
 <style>
 </style>
@@ -10,24 +13,28 @@
 <div class="header">
  <h1>Banjo Tabs</h1>
 </div>
+ <div class="login-form">
  <label for="email">Email</label>
  <br>
- <input type="text" id="email"></input>
- <br>
+ <input class="login-input" type="text" id="email" required></input>
+ <br><br>
  <label for="username">Username</label>
  <br>
- <input type="text" id="username"></input>
- <br>
+ <input class="login-input" type="text" id="username" required></input>
+ <br><br>
  <label for="password">Password</label>
  <br>
- <input type="password" id="password"></input>
- <br>
+ <input class="login-input" type="password" id="password" required></input>
+ <br><br>
  <label for="password-confirm">Confirm Password</label>
  <br>
- <input type="password" id="password-confirm"></input>
+ <input class="login-input" type="password" id="password-confirm" required></input>
  <br>
- <p id="error-msg">
- <button type="button" id="register">REGISTER</button>
+ <!-- need to make sure to remove the text node before another one is added -->
+ <p class="error-msg" id="error-msg"></p>
+ <br>
+ <button class="generic-btn" type="button" id="register">REGISTER</button>
+ </div>
 <script type="text/javascript" src="./signin.js"></script>
 </body>
 </html>

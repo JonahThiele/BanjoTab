@@ -64,16 +64,16 @@ function generate_rows(clustersize){
             let str
             if (admin){
                 str = '<tr><td><form action="http://localhost:3000/song/" method="GET"><input type="hidden" id="name" '
-                + 'name="name" value="' + songs[row]['name'] +  '"></input><input type="submit" value="' + songs[row]['name'] 
+                + 'name="name" value="' + songs[row]['name'] +  '"></input><input class="song-btns" type="submit" value="' + songs[row]['name'] 
                 + '"></input></form></td><td><form action="http://localhost:3000/approve" method="GET">'
                 + '<input type="hidden" id="name" name="name" value="' + songs[row]['name'] + '"></input>'
                 + '<input type="hidden" id="quickApprove" name="quickApprove" value="no"></input>'
-                + '<input type="submit" value="edit"></input></form></td>'
+                + '<input class="song-btns" type="submit" value="Edit"></input></form></td>'
                 + '<td><form action="http://localhost:3000/songd" method="POST">'
                 + '<input type="hidden" id="name" name="name" value="' + songs[row]['name']
-                + '"></input><input type="submit" value="delete"></input></form></td></tr>'
+                + '"></input><input class="song-btns" type="submit" value="delete"></input></form></td></tr>'
             }else {
-                str = '<tr><td><form action="http://localhost:3000/song/" method="get"><input type="hidden" id="name" name="name" value="' + songs[row]['name'] + '"></input><input type="submit" value="' + songs[row]['name'] + '"></input></form></tr></td>'
+                str = '<tr><td><form action="http://localhost:3000/song/" method="get"><input type="hidden" id="name" name="name" value="' + songs[row]['name'] + '"></input><input class="song-btns" type="submit" value="' + songs[row]['name'] + '"></input></form></tr></td>'
  
             }
              //normal user only sees the approved values

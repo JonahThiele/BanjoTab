@@ -1,25 +1,47 @@
 body {
-     background-color: #f1ddbf;
-     text-align: center
+   
+     text-align: center;
+     font-family: "Merriweather";
  }
 
+.song-info {
+    text-align: left;
+}
+
 .songs-table {
-    border: 1px solid black;
     border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     width: 100%;    
 }
 
 td {
     border: 1px solid black;
     border-collapse: collapse;
+    border-radius: 10px;
 }
 
-tr:nth-child(odd) {
-    background-color: #968972;
+tr {
+    height: 40px;
 }
 
 tr:nth-child(even) {
-    background-color: #c9b898;
+    background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #879e82;
+}
+
+tr:hover {
+    background-color: #879e82;
 }
 
 
@@ -33,11 +55,134 @@ tr:nth-child(even) {
 }
 
 .login {
-    text-align: right;
+    text-decoration: none;
+}
+
+.login:visited {
+    color: black;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-el {
+    background-color: #677a63;
+    padding: 10px, 10px, 40px, 40px;
+    width: 90px;
+    height: 40px;
+    border: 5px, solid, black; 
 }
 
 .header {
-    padding: 20px;
+    padding-top: 20px;
     background-color: #879e82;
     font-size: 25px;
+}
+
+.search {
+    border-radius: 10px;
+    overflow: hidden;
+    border-style: solid;
+    box-shadow: none;
+    border: 5x solid #ccc;
+    padding: 2px;
+    height: 30px;
+    width: 200px;
+}
+
+.search-box {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.search-btn {
+    background-image: url(./icons8-search.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    overflow: hidden;
+    border-style: solid;
+    box-shadow: none;
+    border: 5x solide #ccc;
+    padding: 2px;
+    height: 30px;
+    width: 35px;
+    color: 0;
+
+}
+
+.generic-btn {
+    background-color: #677a63;
+    border: 5px, solid, #ccc;
+    border-radius: 10px;
+    width: 200px;
+    height: 35px;
+    font-family: "Merriweather";
+}
+
+
+
+.login-form {
+    font-family: "Merriweather";
+}
+
+.login-input {
+    border-radius: 10px;
+    overflow: hidden;
+    border-style: solid;
+    box-shadow: none;
+    border: 5x solid #ccc;
+    padding: 2px;
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+}
+
+.tab-fd {
+    background-color: #879e82;
+    height: 25px;
+    width: 25px;
+}
+
+[type="file"]{
+  background: #677a63;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Merriweather';
+  font-weight: 500;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;
+  text-decoration: none;
+
+  }
+
+.text-ar {
+    border-style: solid;
+    box-shadow: none;
+    border: 5px, solid, #ccc;
+    padding: 2px;
+    font-size: 20px;
+    font-family: "Merriweather";
+}
+/*make the buttons invisible yet clickable for the entire cell*/
+.song-btns {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 40px;
+    font-family: "Merriweather"; 
+}
+
+.error-msg {
+    color: red;
 }
