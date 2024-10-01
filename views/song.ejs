@@ -31,13 +31,13 @@
       <b><p>Tabs:</p></b>
       <ul>
           <% for(let i=0; i < data.tabs.length; i++) { %>
-          <li><a href="http://localhost:3000/tab/<%=data.tabs[i]%>/pdf" ><%= data.tabs[i] %></a></li>
+          <li><a href="http://localhost:3000/tab/<%=data.tabs[i]%>" ><%= data.tabs[i] %></a></li>
           <% } %>
       </ul>
       <b><p>Audio:</p></b>
       <ul>
           <% for(let i=0; i < data.audio.length; i++) { %>
-          <li><a href="http://localhost:3000/audio/<%=data.audio[i]%>/pdf"><%= data.audio[i] %></a></li>
+          <li><a href="http://localhost:3000/audio/<%=data.audio[i]%>"><%= data.audio[i] %></a></li>
           <% } %>
       </ul>
       <b><p>Posted by User:</b> <%= data.username %> </p>

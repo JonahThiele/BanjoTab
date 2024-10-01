@@ -9,12 +9,11 @@
 <link rel="stylesheet" href="./banjo.css">
 <style>
 </style>
-<script src=""></script>
 <body>
 <div class="header">
  <h1>Banjo Tabs</h1>
 </div>
- <form action="http://localhost:3000/song" method="POST">
+<form id="song-form" enctype="multipart/form-data" action="http://localhost:3000/song" method="POST">
  <label for="name">Name of Tab</label>
  <br>
  <input class="login-input" type="text" id="name" name="name"></input>
@@ -33,18 +32,19 @@
  <label for="tabs-files">upload tabs</label>
  <br>
  <!-- handle the mime type with the backend node server to make sure it is actually a normal file -->
- <input type="file" id="tabsfiles" name="tabfiles" multiple=true></input>
+ <input type="file" id="tabsfiles" name="tabfiles" multiple></input>
  <br><br>
  <label for="tabs-audio">upload a recording of the tab</label>
  <br>
- <input type="file" id="tabsaudio" accept="audio/*" name="tabsaudio" multiple=true></input>
+ <input type="file" id="tabsaudio" accept="audio/*" name="tabsaudio" multiple></input>
  <!-- decide if a hidden input makes sense right here or not -->
  <br><br>
  <label for="description">Write a few comments or description of the song/tab</label>
  <br>
- <textarea class="text-ar" id=description" rows="4" cols="50" name="description"></textarea>
+ <textarea class="text-ar" id="description" rows="4" cols="50" name="description"></textarea>
  <br><br>
  <button  class="generic-btn" type="submit" id="addtab">Add Tab</button>
  </form>
+<script src="fileHandler.js"></script> 
 </body>
 </html>

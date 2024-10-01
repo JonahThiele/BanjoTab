@@ -22,19 +22,23 @@ try {
 
 
 function process_funky_forms(keepPreface, obj){
-    let sql_str = '{'
-    for( let i = 0; i < obj['num_' + keepPreface]; i++)
-    {
+    if(obj['num_' + keepPreface]){
+        let sql_str = '{'
+        for( let i = 0; i < obj['num_' + keepPreface]; i++)
+        {
             //indexing for the inputs starts at zero
             if(obj[ keepPreface + 'keep'+ i] == "true")
             {   
                 sql_str = sql_str + obj[keepPreface + i] + ','
             }
+        }   
+        //remove the last comma because its the end of the list
+        sql_str = sql_str.slice(0, -1)
+        sql_str = sql_str + '}'
+        return sql_str
+    } else {
+        return " "
     }
-    //remove the last comma because its the end of the list
-    sql_str = sql_str.slice(0, -1)
-    sql_str = sql_str + '}'
-    return sql_str
 }
 
 
@@ -60,16 +64,33 @@ module.exports = {
         return songs.rows
     },
 
-    add_song: async function(song_obj, user){
+    add_song: async function(song_obj, user, file_obj){
         const name = song_obj.name
         //this might have to be an empty list at first
         // I need to figure out how I can add the altnames to the form to post it
         const altnames = '{' + "bruh" + '}'
         const artist = song_obj.artist
-        const tabfound = song_obj.tabfound
+        const tabfound = song_obj.tabfound ? song_obj.tabfound : "off"
         //this should be the paths to the files path to the file
-        const tabs = '{' + song_obj.tabfiles.toString() + '}'
-        const audio = '{' + song_obj.tabsaudio.toString() + '}'
+        let tabs = '{'
+        let audio = '{'
+        //iterate through the files obj and add to the correct list
+        //probably a function could do this better
+        for(let i = 0; i < file_obj.length; i++)
+        {
+            if(file_obj[i].fieldname == 'tabsaudio')
+            {
+                audio += (file_obj[i].fieldname + ',')
+            } else {
+                tabs += (file_obj[i].fieldname + ',')
+            }
+        }
+
+        tabs = tabs.slice(0, -1)
+        audio = audio.slice(0, -1)
+        tabs += '}'
+        audio += '}'
+
         //get this from the session
         const approved = false
         const description = song_obj.description

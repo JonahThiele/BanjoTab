@@ -34,12 +34,14 @@ const mailer = nodemailer.createTransport({
 const session = require('express-session')
 
 
-const F_DIR = path.join(__dirname, '../tabs')
+const F_DIR = path.join(__dirname, './tabs')
+const A_DIR = path.join(__dirname, './audio')
 
 const sql = require('./sql.js')
 
 const { Pool } = require('pg')
 const pgSession = require('connect-pg-simple')(session)
+
 //create a dedicated connection to the postgres database
 const pool = new Pool({
       user: "postgres",
@@ -64,24 +66,34 @@ app.use(session({
     },
     saveUninitialized: true
 }))
+
+
 const multer = require('multer')
-const storage = multer.diskStorage({
-    destination: function ( req, file, cb) {
-        if(file.mimetype === 'audio/*'){
-            cb(null, 'audio')
-         }else if (file.mimetype === 'image/*'){
-            cb(null, 'tabs')
-         }else if (file.mimetype === 'application/pdf'){
-             cb(null, 'tabs')
+const options = multer.diskStorage({
+    destination: function ( req, file, callback) {
+        //console.log(file.mimetype.startsWith() )
+        if(file.mimetype.startsWith('audio/')){
+            callback(null, path.join(__dirname, './audio'))
+         }else if (file.mimetype.startsWith('image/')){
+            callback(null, path.join(__dirname, './tabs'))
+         }else if (file.mimetype == 'application/x-wine-extension-tef'){
+             callback(null, path.join(__dirname, './tabs'))
+         }else if (file.mimetype == 'application/pdf'){
+             callback(null, path.join(__dirname, './tabs'))
          }else {
             //what does the mime type think it is?
             console.log(file.mimetype)
-            cb({ error: 'Mime type not supported' })
+            callback({ error: 'Mime type not supported' })
          }
-    }
+    },
+
+   filename: function (req, file, callback) {
+       //console.log(file.orginalinam)
+       callback(null, file.originalname)
+   }
 })
-const forms = multer({storage: storage})
-app.use(forms.array())
+const forms = multer({storage: options})
+//app.use(forms)
 //when a login is received change this to display a button to upload or edit a song
 app.get('/', (req, res) => {
     if( req.session.loggedin && req.session.is_admin)
@@ -95,27 +107,19 @@ app.get('/', (req, res) => {
     }
 })
 
-// requests to the express server
-
-
-// get a songs tab via download
 // I need to rewrite this to work with the array currently it is very unsafe
-app.get('/tab/:name/:type', (req, res) => {
-    // get filename from the sql server and serve it from a local dir
-    const filename = req.params.name + req.params.type
+app.get('/tab/:name/', (req, res) => {
     //set up the F_DIR
-    res.download(filename, { root : F_DIR }, function(error){
+    res.download(req.params.name, { root : F_DIR }, function(error){
         if(!error) return;
         res.statusCode = 404
         res.send("Sorry an error occured while downloading the file")
     })
 })
 // I need to rewrite this to work with the array currently it is very unsafe
-app.get('/audio/:name/:type', (req, res) => {
+app.get('/audio/:name', (req, res) => {
     // get filename from the sql server and serve it from a local dir
-    const filename = req.params.name + req.params.type
-    //set up the F_DIR
-    res.download(filename, { root : F_DIR }, function(error){
+    res.download(req.params.name, { root : A_DIR }, function(error){
         if(!error) return;
         res.statusCode = 404
         res.send("Sorry an error occured while downloading the file")
@@ -182,12 +186,13 @@ app.get('/approve', (req, res) => {
     }
 })
 // add a new song
-const upload = multer({storage})
-app.post('/song',upload.any(), (req, res) => {
+app.post('/song',forms.any(), (req, res) => {
     //pass the whole object so we don't need to pack and unpack it
+    console.log(req.files)
     const song_obj  = req.body
     console.log(req.body)
-    sql.add_song(song_obj, req.session.user)
+    //pass in the files in order to get the correct names of the files
+    sql.add_song(song_obj, req.session.user, req.files)
     //return to the homepage
     res.redirect("/")
 })
