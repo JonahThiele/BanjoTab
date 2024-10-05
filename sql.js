@@ -120,12 +120,9 @@ module.exports = {
         return user_u
     },
 
-    add_user: async function(user_obj) {
+    add_user: async function(user, email, password) {
         //this should probably be in the 
-        const password = user_obj['password']
-        const user = user_obj['user']
-        const email = user_obj['email']
-        const usr = await client.query('INSERT INTO users (username, password, email, admin, verified) VALUES ($1, $2, $3, false, true)', [userin, hash, email]) 
+        const usr = await client.query('INSERT INTO users (username, password, email, admin, verified) VALUES ($1, $2, $3, false, false)', [user, password, email]) 
     },
 
     check_login: async function(name) {

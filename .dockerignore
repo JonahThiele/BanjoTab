@@ -1,0 +1,10 @@
+node_modules
+npm-debig.logs
+Dockerfile
+.dockerignore
+.git
+.gitignore
+tabs
+audio
+.env
+

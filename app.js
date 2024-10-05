@@ -4,8 +4,7 @@ const port = 3000
 
 //set up ejs 
 app.set('view engine', 'ejs')
-//idk what this does
-app
+
 const path = require('path')
 //this is suspposed to prevent the opaque blocking that is occuring
 const cors = require('cors')
@@ -21,12 +20,11 @@ const saltRounds = 10
 const nodemailer = require('nodemailer')
 
 const mailer = nodemailer.createTransport({
-    host:"smtp.zoho.com",
-    secure: true,
-    port: 465,
+    host:"sandbox.smtp.mailtrap.io",
+    port: 2525,
     auth: {
-        user: 'banjotab7@zoho.com',
-        pass: process.env.ZOHO_PASS,
+        user: '982e04cfe35d6c',
+        pass: '064af4776c31fc',
     }
 })
 
@@ -268,47 +266,31 @@ app.put('/verify', (req, res) => {
 // add a new user
 app.post('/user', (req, res) => {
     const user_obj = req.body
-    let salt_s = undefined
-    bcrypt.genSalt(saltRounds, (err, salt) => {
-        if (err) {
-            console.log("Error during salt generation occured")
-            return
-        }
-    })
 
-    bcrypt.hash(req.body.password, salt_s, (err, hash) => {
-              if(err) {
-                  console.log("Error creating a Hash talk to sql server")
-                  return
-              }
-              console.log(hash)
-              add_user_whash(user, email, hash)
-              console.log("finished hash")
-              return
+    try {
+        bcrypt.genSalt(saltRounds)
+        .then(salt => {
+            return bcrypt.hash(req.body.password, salt)
+        })
+        .then(hash => {
+            sql.add_user(req.body.user, req.body.email, hash)
+        })
 
-    })
-    sql.add_user(user_obj).then( res => {
-        //set the email with node mailer
-    }).catch(err => {
-        console.log("error encountered adding a new user")
-    })
+    } catch(error) {
+        console.error("Error during user creation", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
    // I will deal with all the verifiction issues later
    // the library is not playing nice with the 
    console.log("sending a registration email")
    console.log(user_obj.email)
    const mailopt = {
-            from: 'banjotab7@zoho.com',
-            to: 'jonahthiele@yahoo.com',
+            from: 'banjotab7@gmail.com',
+            to: user_obj.email,
             subject: 'Verify email for Banjo Tab',
             text: 'Verify your email for Banjo Tab, doing so is the only way that you can edit or add tabs' 
         }
-    mailer.sendMail(mailopt, function(error, info){
-        if(error){
-            console.log(error)
-        } else {
-            console.log(info.response);
-        }
-    })
+    mailer.sendMail(mailopt)
 
 })
 //check if username is unique
