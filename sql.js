@@ -3,6 +3,7 @@
 
 const { Client } = require('pg')
 
+//eventually this needs to be replaced
 const client = new Client({
     user: "postgres",
     host: "localhost",
@@ -32,7 +33,9 @@ function process_funky_forms(keepPreface, obj){
                 sql_str = sql_str + obj[keepPreface + i] + ','
             }
         }   
+        
         //remove the last comma because its the end of the list
+
         sql_str = sql_str.slice(0, -1)
         sql_str = sql_str + '}'
         return sql_str

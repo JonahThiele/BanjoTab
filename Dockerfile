@@ -1,10 +1,10 @@
-FROM node:10-alpine
+FROM node:22-alpine
 
 RUN mkdir -p /home/node/banjoTab/node_modules && chown -R node:node /home/node/banjoTab/
 
 WORKDIR /home/node/banjoTab
 
-COPY package*.json ./
+COPY --chown=node:node package*.json ./
 #making sure the modules are owned by node
 USER node
 

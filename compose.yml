@@ -1,0 +1,35 @@
+#compose attempt v0.1
+services:
+
+  #application 
+# BanjoTab:
+#    image: testing/banjotab
+#    build: ./
+
+    #all the required envs set for banjotab
+#   environment:
+#      - POSTGRES=postgres_password
+
+#    restart: unless-stopped
+#    ports:
+#      - 8080:3000
+    
+    #connect the postgres db and the banjo application
+
+  #postgres database
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./init_sql:/data/application/init.sql
+    environment:
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: Banjo
+
+    ports:
+      - 5432:5432
+
+networks:
+  default:
+    driver: bridge
